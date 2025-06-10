@@ -1,46 +1,821 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BGS Kleinlinden</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Brüder-Grimm-Schule Kleinlinden - Integrierte Gesamtschule</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        /* Header & Navigation */
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: #fbbf24;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .nav a:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #64748b;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #1e3a8a;
+            border: 2px solid #1e3a8a;
+        }
+
+        .btn-secondary:hover {
+            background: #1e3a8a;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Quick Info Cards */
+        .quick-info {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .info-card i {
+            font-size: 3rem;
+            color: #3b82f6;
+            margin-bottom: 1rem;
+        }
+
+        .info-card h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+
+        .info-card p {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+        }
+
+        /* News Section */
+        .news {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .news-card-header {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            padding: 1.5rem;
+        }
+
+        .news-date {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-card h5 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .news-card-body {
+            padding: 1.5rem;
+        }
+
+        .news-card p {
+            color: #64748b;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: #1e3a8a;
+            transform: translateX(5px);
+        }
+
+        /* Calendar Section */
+        .calendar {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .calendar-container {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .calendar-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1e3a8a;
+        }
+
+        .event-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .event-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border-left: 4px solid #3b82f6;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .event-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .event-date {
+            font-weight: 600;
+            color: #3b82f6;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-title {
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-description {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .contact-card h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-card i {
+            font-size: 1.5rem;
+            color: #fbbf24;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .contact-info span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0f172a;
+            color: white;
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #fbbf24;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #fbbf24;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 2rem;
+            text-align: center;
+            color: #94a3b8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .header-content {
+                padding: 0 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .section-title h3 {
+                font-size: 2rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
 <body>
-    <header class="hero">
-        <nav class="navbar">
-            <h1>BGS Kleinlinden</h1>
-            <ul>
-                <li><a href="#news">News</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-        <div class="hero-content">
-            <h2>Welcome to our School</h2>
-            <p>Education for the future in a modern environment.</p>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <div class="logo-text">
+                    <h1>Brüder-Grimm-Schule</h1>
+                    <p>Integrierte Gesamtschule Kleinlinden</p>
+                </div>
+            </div>
+            <nav class="nav">
+                <a href="#home">Home</a>
+                <a href="#schule">Schule</a>
+                <a href="#grundschule">Grundschule</a>
+                <a href="#termine">Termine</a>
+                <a href="#kontakt">Kontakt</a>
+            </nav>
+            <button class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </header>
 
-    <main>
-        <section id="news">
-            <h3>Latest News</h3>
-            <p>Stay up to date with the latest school events and announcements.</p>
-        </section>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content fade-in-up">
+            <h2>Willkommen an der Brüder-Grimm-Schule</h2>
+            <p>Integrierte Gesamtschule mit angeschlossener Grundschule in Gießen-Kleinlinden. Gemeinsam lernen, wachsen und die Zukunft gestalten.</p>
+            <div class="cta-buttons">
+                <a href="#schule" class="btn btn-primary">Unsere Schule entdecken</a>
+                <a href="#kontakt" class="btn btn-secondary">Kontakt aufnehmen</a>
+            </div>
+        </div>
+    </section>
 
-        <section id="about">
-            <h3>About Us</h3>
-            <p>BGS Kleinlinden offers a friendly learning environment with modern facilities.</p>
-        </section>
+    <!-- Quick Info Section -->
+    <section class="quick-info" id="schule">
+        <div class="container">
+            <div class="section-title">
+                <h3>Unsere Schule</h3>
+                <p>Eine moderne Bildungseinrichtung mit Tradition und Zukunftsorientierung</p>
+            </div>
+            <div class="info-grid">
+                <div class="info-card">
+                    <i class="fas fa-users"></i>
+                    <h4>Grundschule</h4>
+                    <p>Jahrgänge 1-4 mit individueller Förderung und modernen Lernmethoden</p>
+                    <a href="#grundschule" class="read-more">Mehr erfahren <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-school"></i>
+                    <h4>Gesamtschule</h4>
+                    <p>Förderstufe, Haupt-, Real- und Gymnasialzweig unter einem Dach</p>
+                    <a href="#" class="read-more">Mehr erfahren <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-robot"></i>
+                    <h4>Robotik-AG</h4>
+                    <p>Moderne Technologie und Programmierung spielerisch erlernen</p>
+                    <a href="#" class="read-more">Mehr erfahren <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-music"></i>
+                    <h4>Musik & Kultur</h4>
+                    <p>Konzerte, Theater und kreative Aktivitäten das ganze Jahr über</p>
+                    <a href="#" class="read-more">Mehr erfahren <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <section id="contact">
-            <h3>Contact</h3>
-            <p>Email: info@bgs-kleinlinden.de</p>
-        </section>
-    </main>
+    <!-- News Section -->
+    <section class="news">
+        <div class="container">
+            <div class="section-title">
+                <h3>Aktuelle Neuigkeiten</h3>
+                <p>Bleiben Sie auf dem Laufenden über das Schulleben</p>
+            </div>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-card-header">
+                        <div class="news-date">17. Juni 2025</div>
+                        <h5>Sommerkonzert 2025</h5>
+                    </div>
+                    <div class="news-card-body">
+                        <p>Wir laden herzlich zu unserem diesjährigen Sommerkonzert ein. Einlass ab 18:00 Uhr, Beginn 18:30 Uhr in der Aula.</p>
+                        <a href="#" class="read-more">Weiterlesen <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-card-header">
+                        <div class="news-date">12. Mai 2025</div>
+                        <h5>Mathematikum-Besuch</h5>
+                    </div>
+                    <div class="news-card-body">
+                        <p>Die Klassen 2b und 3c besuchten das interaktive Mitmachmuseum Mathematikum in Gießen - Mathe zum Anfassen!</p>
+                        <a href="#" class="read-more">Weiterlesen <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-card-header">
+                        <div class="news-date">1. Februar 2025</div>
+                        <h5>Neue Stufenleitungen</h5>
+                    </div>
+                    <div class="news-card-body">
+                        <p>Isabell Gerlach übernimmt die Stufenleitung der Jahrgänge 1-4 im Grundschulbereich. Herzlich willkommen!</p>
+                        <a href="#" class="read-more">Weiterlesen <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <footer>
-        <p>&copy; 2025 BGS Kleinlinden</p>
+    <!-- Calendar Section -->
+    <section class="calendar" id="termine">
+        <div class="container">
+            <div class="section-title">
+                <h3>Termine & Veranstaltungen</h3>
+                <p>Wichtige Termine und Events im Überblick</p>
+            </div>
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <h4 class="calendar-title">Juni 2025</h4>
+                </div>
+                <div class="event-list">
+                    <div class="event-item">
+                        <div class="event-date">Dienstag, 10. Juni</div>
+                        <div class="event-title">Sprechstunde Agentur für Arbeit</div>
+                        <div class="event-description">Nach Terminabsprache (wiederholt sich wöchentlich)</div>
+                    </div>
+                    <div class="event-item">
+                        <div class="event-date">Mittwoch, 11. Juni</div>
+                        <div class="event-title">2. Elternabend Schulanfänger 2025</div>
+                        <div class="event-description">19:30 - 21:00 Uhr</div>
+                    </div>
+                    <div class="event-item">
+                        <div class="event-date">Donnerstag, 12. Juni</div>
+                        <div class="event-title">3. SV-Stunde</div>
+                        <div class="event-description">9:35 - 10:20 Uhr</div>
+                    </div>
+                    <div class="event-item">
+                        <div class="event-date">Montag, 16. Juni</div>
+                        <div class="event-title">Pädagogischer Tag</div>
+                        <div class="event-description">Ganztägig - unterrichtsfrei</div>
+                    </div>
+                    <div class="event-item">
+                        <div class="event-date">Dienstag, 17. Juni</div>
+                        <div class="event-title">Sommerkonzert</div>
+                        <div class="event-description">Einlass: 18:00 Uhr, Beginn: 18:30 Uhr</div>
+                    </div>
+                    <div class="event-item">
+                        <div class="event-date">Freitag, 20. Juni</div>
+                        <div class="event-title">Beweglicher Ferientag</div>
+                        <div class="event-description">Schulfrei</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="kontakt">
+        <div class="container">
+            <div class="section-title">
+                <h3>Kontakt</h3>
+                <p>Nehmen Sie Kontakt mit uns auf - wir sind für Sie da</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h4><i class="fas fa-map-marker-alt"></i> Adresse</h4>
+                    <div class="contact-info">
+                        <span>Lützellindener Straße 63</span>
+                        <span>35398 Gießen-Kleinlinden</span>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <h4><i class="fas fa-phone"></i> Telefon</h4>
+                    <div class="contact-info">
+                        <span>Tel: 0641 306-3690</span>
+                        <span>Fax: 0641 306-3660</span>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <h4><i class="fas fa-envelope"></i> E-Mail</h4>
+                    <div class="contact-info">
+                        <span>verwaltung@bgs-giessen.de</span>
+                        <span>poststelle6048@schule.hessen.de</span>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <h4><i class="fas fa-users-cog"></i> Schulleitung</h4>
+                    <div class="contact-info">
+                        <span>Schulleiterin: Barbara Burggraf</span>
+                        <span>Stv. Schulleiter: Samuel Karbe</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Schnellzugriff</h4>
+                    <ul>
+                        <li><a href="#home">Startseite</a></li>
+                        <li><a href="#schule">Unsere Schule</a></li>
+                        <li><a href="#grundschule">Grundschule</a></li>
+                        <li><a href="#termine">Termine</a></li>
+                        <li><a href="#kontakt">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Schulformen</h4>
+                    <ul>
+                        <li><a href="#">Grundschule (Klassen 1-4)</a></li>
+                        <li><a href="#">Förderstufe (Klassen 5-6)</a></li>
+                        <li><a href="#">Hauptschulzweig</a></li>
+                        <li><a href="#">Realschulzweig</a></li>
+                        <li><a href="#">Gymnasialzweig</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Service</h4>
+                    <ul>
+                        <li><a href="#">Sekretariat</a></li>
+                        <li><a href="#">Kollegium</a></li>
+                        <li><a href="#">Downloads</a></li>
+                        <li><a href="#">Moodle-Platform</a></li>
+                        <li><a href="#">IServ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Rechtliches</h4>
+                    <ul>
+                        <li><a href="#">Impressum</a></li>
+                        <li><a href="#">Datenschutz</a></li>
+                        <li><a href="#">Nutzungsbedingungen</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Brüder-Grimm-Schule Kleinlinden. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
     </footer>
-</body>
-</html>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.info-card, .news-card, .event-item, .contact-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile menu toggle (simplified version)
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const nav = document.querySelector('.nav');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Header background change on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'linear-gradient(135deg, rgba(
